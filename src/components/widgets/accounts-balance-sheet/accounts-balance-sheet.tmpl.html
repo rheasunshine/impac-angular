@@ -28,11 +28,11 @@
           <div class="row">
             <div class="col-xs-6 text-center sortable-title" ng-click="sort('total1')">
               {{'impac.widget.account_balance_sheets.balance' | translate}}
-              <i ng-show="sortedColumn == 'total1'" class="fa" ng-class="ascending ? 'fa-sort-alpha-asc' : 'fa-sort-alpha-desc'" />
+              <i ng-show="sortedColumn == 'balance1'" class="fa" ng-class="ascending ? 'fa-sort-alpha-asc' : 'fa-sort-alpha-desc'" />
             </div>
-            <div class="col-xs-6 text-center sortable-title" ng-click="sort('total2')">
+            <div class="col-xs-6 text-center sortable-title" ng-click="sort('balance2')">
               {{'impac.widget.account_balance_sheets.balance' | translate}}
-              <i ng-show="sortedColumn == 'total2'" class="fa" ng-class="ascending ? 'fa-sort-alpha-asc' : 'fa-sort-alpha-desc'" />
+              <i ng-show="sortedColumn == 'balance2'" class="fa" ng-class="ascending ? 'fa-sort-alpha-asc' : 'fa-sort-alpha-desc'" />
             </div>
           </div>
         </div>
@@ -45,32 +45,32 @@
         <div class="col-xs-12">
           <!-- Statements lines -->
           <div class="row widget-line" >
-            <div class="col-xs-1" ng-click="toggleCollapsed(header.title)" style="cursor: pointer;">
-              <i class="fa" ng-class="isCollapsed(header.title) ? 'fa-plus-square-o' : 'fa-minus-square-o'" />
+            <div class="col-xs-1" ng-click="toggleCollapsed(header)" style="cursor: pointer;">
+              <i class="fa" ng-class="isCollapsed(header) ? 'fa-plus-square-o' : 'fa-minus-square-o'" />
             </div>
             <div class="col-sm-5 col-xs-11 text-left">
               <strong>{{header}}</strong>
             </div>
             <div class="col-sm-3 col-xs-6 text-right">
-              <strong>{{ groupedTable.grouped_totals[$index][0] | mnoCurrency : currency }}</strong>
+              <strong>{{ grouped_totals[$index][0] | mnoCurrency : currency }}</strong>
             </div>
             <div class="col-sm-3 col-xs-6 text-right">
-              <strong>{{ groupedTable.grouped_totals[$index][1] | mnoCurrency : currency }}</strong>
+              <strong>{{ grouped_totals[$index][1] | mnoCurrency : currency }}</strong>
             </div>
           </div>
 
           <!-- Accounts lines -->
-          <div class="row" uib-collapse="isCollapsed(category.key)">
+          <div class="row" uib-collapse="isCollapsed(header)">
             <div class="col-xs-12">
               <div class="row widget-line" ng-repeat="account in grouped_table.groups[$index]" >
                 <div class="col-sm-5 col-xs-11 col-xs-offset-1 text-left">
-                  {{account.name | titleize}}
+                  {{ account.name | titleize }}
                 </div>
                 <div class="col-sm-3 col-xs-6 text-right">
-                  {{account.balances[1] | mnoCurrency : account.currency}}
+                  {{ account.balances[1] | mnoCurrency : account.currency }}
                 </div>
                 <div class="col-sm-3 col-xs-6 text-right">
-                  {{account.balances[0] | mnoCurrency : account.currency}}
+                  {{ account.balances[0] | mnoCurrency : account.currency }}
                 </div>
               </div>
             </div>
