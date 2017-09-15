@@ -72,9 +72,16 @@ module.controller('WidgetAccountsBalanceSheetCtrl', ($scope, $q, ImpacWidgetsSvc
     # if w.content? && w.content.period? && _.contains(_.pluck($scope.periodOptions, 'value'), w.content.period)
     #   $scope.period = angular.copy _.find $scope.periodOptions, ((o) -> o.value == w.content.period)
 
-    if $scope.isDataFound = angular.isDefined(w.content) && !_.isEmpty(w.content.summary) && !_.isEmpty(w.content.dates)
+    if $scope.isDataFound = angular.isDefined(w.content) && !_.isEmpty(w.content.grouped_table)
       $scope.dates = w.content.dates
       $scope.unCollapsed = w.metadata.unCollapsed || []
+
+      $scope.currency = w.metadata.currency
+      $scope.grouped_table = w.content.grouped_table
+      $scope.grouped_totals = []
+      _.map($scope.grouped_table.groups, (group) ->
+        $scope.grouped_totals << [ _.sumBy(group, (acc) -> acc.balances[0]) , _.sumBy(group, (acc) -> acc.balances[1]) ]
+      )
 
       $scope.categories = []
       translateCategories(Object.keys(w.content.summary))
