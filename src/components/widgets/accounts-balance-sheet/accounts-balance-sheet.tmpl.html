@@ -49,7 +49,7 @@
               <i class="fa" ng-class="isCollapsed(header) ? 'fa-plus-square-o' : 'fa-minus-square-o'" />
             </div>
             <div class="col-sm-5 col-xs-11 text-left">
-              <strong>{{header}}</strong>
+              <strong>{{ header }}</strong>
             </div>
             <div class="col-sm-3 col-xs-6 text-right">
               <strong>{{ grouped_totals[$index][0] | mnoCurrency : currency }}</strong>
@@ -67,10 +67,10 @@
                   {{ account.name | titleize }}
                 </div>
                 <div class="col-sm-3 col-xs-6 text-right">
-                  {{ account.balances[1] | mnoCurrency : account.currency }}
+                  {{ account.balances[0] | mnoCurrency : account.currency }}
                 </div>
                 <div class="col-sm-3 col-xs-6 text-right">
-                  {{ account.balances[0] | mnoCurrency : account.currency }}
+                  {{ account.balances[1] | mnoCurrency : account.currency }}
                 </div>
               </div>
             </div>
